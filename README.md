@@ -1,4 +1,4 @@
-```markdown
+
 # Akwantuo Platform
 
 **Akwantuo** is an AI-powered travel planning and logistics platform designed to simplify travel to Ghana for international visitors. The platform combines **AI-assisted trip planning, verified local experiences, booking infrastructure, and integrated payments** into one system so travelers can plan and organize their entire trip before arrival.
@@ -407,4 +407,3 @@ MIT License
 # Vision
 
 Akwantuo aims to become the **operating system for African travel**, enabling seamless discovery, planning, and execution of travel experiences across the continent.
-```
