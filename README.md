@@ -187,7 +187,7 @@ PAYSTACK_SECRET_KEY=your_key
 
 ```
 
-git clone [https://github.com/your-org/akwantuo-platform.git](https://github.com/your-org/akwantuo-platform.git)
+git clone ([git@github.com:Horlawhumy-dev/akwantuo-platform.git])
 cd akwantuo-platform
 
 ```
