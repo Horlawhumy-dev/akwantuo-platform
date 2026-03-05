@@ -4,21 +4,21 @@ This flowchart describes the backend request and async-processing architecture.
 
 ```mermaid
 flowchart TD
-    U[Client / Frontend] -->|HTTPS Request| API[FastAPI API Gateway\napp.main]
+    U[Client / Frontend] -->|HTTPS Request| API[FastAPI API Gateway]
 
-    API --> R[API Router Layer\napp.api.routes]
-    R --> SVC[Service Layer\ntrip_service, payment_service]
+    API --> R[API Router Layer]
+    R --> SVC[Service Layer]
     SVC --> DB[(PostgreSQL / Supabase)]
-    SVC --> AI[AI Orchestration Layer\nagent + rag + prompts]
+    SVC --> AI[AI Orchestration Layer + rag + prompts]
     AI --> KB[(Travel Knowledge Base)]
 
     SVC -->|enqueue jobs| Q[(Redis Queue/Cache)]
-    Q --> W[Celery Worker\nworkers.celery_worker]
-    W --> T[Async Tasks\nworkers.tasks]
+    Q --> W[Background Worker]
+    W --> T[Async Tasks]
 
     T --> DB
     T --> AI
-    T --> N[External Integrations\nPayments/Notifications]
+    T --> N[External Integrations]
 
     API -->|read/write cache| Q
 ```
