@@ -192,86 +192,65 @@ cd akwantuo-platform
 
 ```
 
----
+# Backend-Only Build & Run Guide
 
-# Backend Setup
+## 1) Install prerequisites
 
-Navigate to the backend directory:
+Ensure these are installed:
 
+- Python >= 3.10
+- Redis
+- PostgreSQL (optional if using Supabase)
+- Git
+
+## 2) Clone the repository
+
+```bash
+git clone git@github.com:Horlawhumy-dev/akwantuo-platform.git
+cd akwantuo-platform
 ```
 
+## 3) Configure environment variables
+
+Create a root `.env` file with at least:
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/akwantuo
+REDIS_URL=redis://localhost:6379
+GEMINI_API_KEY=your_api_key
+STRIPE_SECRET_KEY=your_key
+PAYSTACK_SECRET_KEY=your_key
+```
+
+## 4) Set up backend virtual environment
+
+```bash
 cd backend
-
-```
-
-Create virtual environment:
-
-```
-
 python -m venv venv
-
+source venv/bin/activate   # macOS/Linux
+# venv\Scripts\activate   # Windows
 ```
 
-Activate environment:
+## 5) Install backend dependencies
 
-Mac / Linux
-
-```
-
-source venv/bin/activate
-
-```
-
-Windows
-
-```
-
-venv\Scripts\activate
-
-```
-
-Install dependencies:
-
-```
-
+```bash
 pip install -r requirements.txt
-
 ```
 
-Start the FastAPI server:
+## 6) Start backend API
 
-```
-
+```bash
 uvicorn app.main:app --reload
-
 ```
 
-The API will be available at:
+- API base URL: `http://localhost:8000`
+- API docs: `http://localhost:8000/docs`
 
-```
+## 7) Start background worker (backend async jobs)
 
-[http://localhost:8000](http://localhost:8000)
+In a separate terminal (with env activated), start Redis first, then run:
 
-```
-
-API documentation:
-
-```
-
-[http://localhost:8000/docs](http://localhost:8000/docs)
-
-```
-
----
-
-# Running Background Workers
-
-Start Redis first.
-
-Then run Celery worker:
-
-```
-
+```bash
 celery -A workers.celery_worker worker --loglevel=info
 
 ```
@@ -282,6 +261,25 @@ Workers handle tasks such as:
 - AI processing
 - notifications
 - background bookings
+
+
+## 8) Run backend tests
+
+```bash
+pytest
+```
+
+## 9) Recommended backend-only local workflow
+
+Run these in parallel terminals:
+
+```bash
+redis-server
+uvicorn app.main:app --reload
+celery -A workers.celery_worker worker --loglevel=info
+
+```
+
 
 ---
 
