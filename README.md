@@ -24,6 +24,7 @@ The platform follows a **modular architecture** that separates user interfaces, 
 
 # Architecture
 
+![System Design](<Screenshot from 2026-03-05 07-53-25.png>)
 ```
 
 User
@@ -47,6 +48,7 @@ FastAPI Backend (API Gateway)
 
 # Technology Stack
 
+![Tech Stacks](<WhatsApp Image 2026-03-05 at 05.48.33.jpeg>)
 ## Frontend
 
 - React
